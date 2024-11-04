@@ -1,0 +1,86 @@
+.title h1 {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #202020;
+  text-transform: uppercase;
+  word-spacing: 1px;
+  letter-spacing: 2px;
+}
+
+.introduction{
+    height: 500px;
+    border: 1px solid gray;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.intro-text{
+    width: 500px;
+    height: 480px;
+    border: 1px solid gray;
+    float: left;
+    margin: 10px;
+}
+
+.intro-visual{
+    width: 870px;
+    height: 480px;
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    border: 1px solid gray;
+}
+
+.intro-visual svg{
+    width: 870px;
+    height: 480px;
+}
+
+.control-panel{
+    display: flex;
+    flex-direction: row;
+}
+
+.control-item{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.intro-linechart {
+    height: 550px;
+    border: 1px solid gray;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.checkbox-text{
+    width: 500px;
+    height: 530px;
+    border: 1px solid gray;
+    float: left;
+    margin: 10px;
+}
+
+.checkbox-visual {
+    width: 870px;
+    height: 530px;
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    border: 1px solid gray;
+}
+
+.checkbox-items {
+    display: flex;
+    order: 7;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.checkbox-visual svg{
+    width: 870px;
+    height: 480px;
+}

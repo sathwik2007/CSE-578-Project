@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Sound of Emotion</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="./main.js"></script>
+</head>
+
+<body>
+    <div class="title">
+        <h1>The Sound of Emotion: How Music Shapes Our Feelings</h1>
+    </div>
+    <hr />
+    <div class="introduction">
+        <div class="intro-text">
+            <p>The bar chart on the right describes the average of a mental health factor against the favorite music
+                genre of different persons.</p>
+            <p>Please change the factor among Anxiety, Depression, Insomnia and OCD to visualize how the mean value of
+                the health factor changes according to the favorite music genre</p>
+        </div>
+        <div class="intro-visual">
+            <div class="control-item">
+                <label for="factor">Select a Factor:</label>
+                <select name="factor" id="factor" onchange="handleData()">
+                    <option>--Select a Factor--</option>
+                    <option value="Anxiety">Anxiety</option>
+                    <option value="Depression">Depression</option>
+                    <option value="Insomnia">Insomnia</option>
+                    <option value="OCD">OCD</option>
+                </select>
+            </div>
+            <svg id="barchart"></svg>
+        </div>
+    </div>
+    <div class="intro-linechart">
+        <div class="checkbox-text">
+            <p>This line chart highlights trends in the average values of various mental health factors across different
+                age groups.</p>
+            <p>You can also apply filters to compare groups, such as people who play an instrument or those who compose
+                music.</p>
+        </div>
+        <div class="checkbox-visual">
+            <form id="checkboxForm">
+                <div class="checkbox-items">
+                    <div class="checkbox-item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="While working" id="whileWorking">
+                            <label class="form-check-label" for="whileWorking">
+                                Listens to Music while working?
+                            </label>
+                        </div>
+                    </div>
+                    <div class="checkbox-item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Instrumentalist"
+                                id="instrumentalist">
+                            <label class="form-check-label" for="instrumentalist">
+                                Is an instrumentalist?
+                            </label>
+                        </div>
+                    </div>
+                    <div class="checkbox-item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Composer" id="composer">
+                            <label class="form-check-label" for="composer">
+                                Is a Composer?
+                            </label>
+                        </div>
+                    </div>
+                    <div class="checkbox-item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Exploratory" id="exploratory">
+                            <label class="form-check-label" for="exploratory">
+                                Is exploratory?
+                            </label>
+                        </div>
+                    </div>
+                    <div class="checkbox-item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Foreign languages" id="foreign">
+                            <label class="form-check-label" for="foreign">
+                                Listens to foreign languages?
+                            </label>
+                        </div>
+                    </div>
+                    <div class="checkbox-item">
+                        <select name="line factor" id="line_factor">
+                            <option value="Anxiety">Anxiety</option>
+                            <option value="Depression">Depression</option>
+                            <option value="Insomnia">Insomnia</option>
+                            <option value="OCD">OCD</option>
+                        </select>
+                    </div>
+                    <div class="checkbox-item">
+                        <button type="button" class="btn btn-primary btn-sm"
+                            onclick="computeLineChart()">Submit</button>
+                    </div>
+                </div>
+            </form>
+            <svg id="linechart"></svg>
+        </div>
+    </div>
+</body>
+
+</html>

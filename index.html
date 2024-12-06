@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="./styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" />
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="./main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+    <script src="scripts/barchart.js"></script>
+    <script src="scripts/linechart.js"></script>
+    <script src="scripts/piechart.js"></script>
+    <script src="scripts/scatterplot.js"></script>
 </head>
 
 <body>
@@ -18,16 +22,18 @@
     <hr />
     <div class="introduction">
         <div class="intro-text">
-            <p>The bar chart on the right describes the average of a mental health factor against the favorite music
-                genre of different persons.</p>
-            <p>Please change the factor among Anxiety, Depression, Insomnia and OCD to visualize how the mean value of
-                the health factor changes according to the favorite music genre</p>
+            This interactive bar plot allows users to explore the relationship between various music genres and their
+            impact on mental health factors such as Anxiety, Depression, Insomnia, and OCD. The x-axis represents
+            different music genres, while the y-axis shows the average scores for the selected mental health factor. By
+            using the dropdown menu, users can switch between mental health factors, and the chart dynamically updates
+            to reflect the corresponding values. This feature enables users to compare genres and gain insights into how
+            different types of music influence mental health. Simply select a factor from the dropdown and observe the
+            changes in the bar heights to explore the data further.
         </div>
         <div class="intro-visual">
             <div class="control-item">
                 <label for="factor">Select a Factor:</label>
-                <select name="factor" id="factor" onchange="handleData()">
-                    <option>--Select a Factor--</option>
+                <select name="factor" id="factor" onchange="computeBarChart()">
                     <option value="Anxiety">Anxiety</option>
                     <option value="Depression">Depression</option>
                     <option value="Insomnia">Insomnia</option>
@@ -49,7 +55,8 @@
                 <div class="checkbox-items">
                     <div class="checkbox-item">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="While working" id="whileWorking">
+                            <input class="form-check-input" type="checkbox" value="While working" id="whileWorking"
+                                onchange="computeLineChart()">
                             <label class="form-check-label" for="whileWorking">
                                 Listens to Music while working?
                             </label>
@@ -57,8 +64,8 @@
                     </div>
                     <div class="checkbox-item">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="Instrumentalist"
-                                id="instrumentalist">
+                            <input class="form-check-input" type="checkbox" value="Instrumentalist" id="instrumentalist"
+                                onchange="computeLineChart()">
                             <label class="form-check-label" for="instrumentalist">
                                 Is an instrumentalist?
                             </label>
@@ -66,7 +73,8 @@
                     </div>
                     <div class="checkbox-item">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="Composer" id="composer">
+                            <input class="form-check-input" type="checkbox" value="Composer" id="composer"
+                                onchange="computeLineChart()">
                             <label class="form-check-label" for="composer">
                                 Is a Composer?
                             </label>
@@ -74,7 +82,8 @@
                     </div>
                     <div class="checkbox-item">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="Exploratory" id="exploratory">
+                            <input class="form-check-input" type="checkbox" value="Exploratory" id="exploratory"
+                                onchange="computeLineChart()">
                             <label class="form-check-label" for="exploratory">
                                 Is exploratory?
                             </label>
@@ -82,28 +91,53 @@
                     </div>
                     <div class="checkbox-item">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="Foreign languages" id="foreign">
+                            <input class="form-check-input" type="checkbox" value="Foreign languages" id="foreign"
+                                onchange="computeLineChart()">
                             <label class="form-check-label" for="foreign">
                                 Listens to foreign languages?
                             </label>
                         </div>
                     </div>
                     <div class="checkbox-item">
-                        <select name="line factor" id="line_factor">
+                        <select name="line factor" id="line_factor" onchange="computeLineChart()">
                             <option value="Anxiety">Anxiety</option>
                             <option value="Depression">Depression</option>
                             <option value="Insomnia">Insomnia</option>
                             <option value="OCD">OCD</option>
                         </select>
                     </div>
-                    <div class="checkbox-item">
-                        <button type="button" class="btn btn-primary btn-sm"
-                            onclick="computeLineChart()">Submit</button>
-                    </div>
                 </div>
             </form>
             <svg id="linechart"></svg>
         </div>
+    </div>
+    <div class="intro-scatterplot">
+        <div class="scatterplot-text">
+            The Scatterplot visualizes the trends in mental health factors in relation to the number of hours listened to the music.
+        </div>
+        <div class="scatterplot-visual">
+            <div class="control-item">
+                <label for="scatterFactor">Select a Factor:</label>
+                <select name="scatterFactor" id="scatterFactor" onchange="handleScatterPlot()">
+                    <option value="Anxiety">Anxiety</option>
+                    <option value="Depression">Depression</option>
+                    <option value="Insomnia">Insomnia</option>
+                    <option value="OCD">OCD</option>
+                </select>
+            </div>
+            <svg id="scatterplot"></svg>
+        </div>
+    </div>
+    <div class="intro-piechart">
+        <div class="piechart-text">
+            Out of the 736 participants surveyed, an overwhelming majority of 542 individuals (about 74%) reported that
+            listening to music positively impacted their mental health, highlighting the therapeutic and uplifting role
+            music can play. Meanwhile, 169 participants (approximately 23%) indicated that music had no noticeable
+            effect on their mental well-being, suggesting a more neutral stance. Notably, only 17 participants (around
+            2%) felt that music had a negative influence on their mental health. These findings underscore music’s
+            largely beneficial role in mental health while recognizing its varied impact on individuals.
+        </div>
+        <svg id="piechart"></svg>
     </div>
 </body>
 
